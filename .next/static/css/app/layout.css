@@ -1,0 +1,95 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./app/globals.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@400;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0d12;
+  --bg2: #13131c;
+  --bg3: #1a1a28;
+  --card: #1e1e2e;
+  --card2: #252538;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --pink: #e879a0;
+  --pink2: #f0a0be;
+  --purple: #a78bfa;
+  --purple2: #c4b5fd;
+  --teal: #34d399;
+  --amber: #fbbf24;
+  --coral: #f87171;
+  --sky: #38bdf8;
+  --text: #f0eaf8;
+  --text2: #a09ab8;
+  --text3: #6b6480;
+  --glow-pink: 0 0 40px rgba(232,121,160,0.18);
+  --glow-purple: 0 0 40px rgba(167,139,250,0.15);
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+input, textarea {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg3);
+  border: 1.5px solid var(--border2);
+  color: var(--text);
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+input:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(232,121,160,0.15);
+}
+
+button { cursor: pointer; font-family: 'Nunito', sans-serif; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  0%   { opacity: 0; transform: scale(0.85) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes bob {
+  0%   { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-12px) rotate(6deg); }
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 0.7; }
+  50%      { transform: scale(1.2); opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes glow {
+  0%,100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+.fade-up { animation: fadeUp 0.6s cubic-bezier(.34,1.56,.64,1) both; }
+.pop-in  { animation: popIn 0.45s cubic-bezier(.34,1.56,.64,1) both; }
+
+.caveat { font-family: 'Caveat', cursive; }
+
