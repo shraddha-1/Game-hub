@@ -1,320 +1,315 @@
-// ─── COUPLES QUESTION DATABASE ───
-// All content is built-in. No API needed for these.
+// ─────────────────────────────────────────────
+// TYPES
+// ─────────────────────────────────────────────
 
-export interface WYRQuestion { optionA: string; optionB: string }
-export interface TOTQuestion { optionA: string; optionB: string }
-export interface CompatQuestion { question: string; options: string[] }
-export interface MovieQuestion { emojis: string; answer: string; hints: string[] }
+export type RelationshipType =
+  | 'partner'
+  | 'bestfriend'
+  | 'crush'
+  | 'sibling'
+  | 'parent'
+  | 'colleague'
 
-// ─── WOULD YOU RATHER (40 questions) ───
+export interface WYRQuestion {
+  optionA: string
+  optionB: string
+}
+
+export interface TOTQuestion {
+  optionA: string
+  optionB: string
+}
+
+export interface CompatQuestion {
+  question: string
+  options: string[]
+}
+
+// ─────────────────────────────────────────────
+// TEMPLATE DATA
+// ─────────────────────────────────────────────
+
+const places = [
+  'Paris 🇫🇷',
+  'Tokyo 🇯🇵',
+  'New York 🗽',
+  'Iceland ❄️',
+  'Bali 🌴',
+  'Santorini 🇬🇷',
+  'Maldives 🏝️',
+]
+
+const foods = [
+  'Pizza 🍕',
+  'Sushi 🍣',
+  'Tacos 🌮',
+  'Pasta 🍝',
+  'Ice cream 🍦',
+  'Burgers 🍔',
+]
+
+const activities = [
+  'Road trip 🚗',
+  'Movie marathon 🎬',
+  'Concert 🎵',
+  'Camping ⛺',
+  'Amusement park 🎢',
+  'Beach day 🏖️',
+]
+
+const powers = [
+  'Teleportation 🌀',
+  'Mind reading 🧠',
+  'Flying ✈️',
+  'Time travel ⏳',
+]
+
+const emotions = [
+  'romantic 💕',
+  'chaotic 🤪',
+  'deep 🧠',
+  'funny 😂',
+  'soft 🥺',
+]
+
+// ─────────────────────────────────────────────
+// BASE QUESTIONS
+// ─────────────────────────────────────────────
+
+const baseWYR: WYRQuestion[] = [
+  {
+    optionA: 'Always cuddle during movies 🎬',
+    optionB: 'Always hold hands 🤝',
+  },
+  {
+    optionA: 'Go on a beach date 🏖️',
+    optionB: 'Go on a mountain trip ⛰️',
+  },
+]
+
+// ─────────────────────────────────────────────
+// AUTO GENERATORS
+// ─────────────────────────────────────────────
+
+function generateWYRQuestions(): WYRQuestion[] {
+  const generated: WYRQuestion[] = []
+
+  // PLACE QUESTIONS
+  for (const place of places) {
+    generated.push({
+      optionA: `Take a trip to ${place}`,
+      optionB: `Stay home for a cozy weekend 🏠`,
+    })
+  }
+
+  // FOOD QUESTIONS
+  for (const food of foods) {
+    generated.push({
+      optionA: `Eat only ${food} forever`,
+      optionB: `Never eat ${food} again`,
+    })
+  }
+
+  // ACTIVITY QUESTIONS
+  for (const activity of activities) {
+    generated.push({
+      optionA: `Do ${activity} every weekend`,
+      optionB: `Never do ${activity} again`,
+    })
+  }
+
+  // SUPERPOWER QUESTIONS
+  for (const power of powers) {
+    generated.push({
+      optionA: `Have ${power}`,
+      optionB: `Read emotions instantly 💭`,
+    })
+  }
+
+  // EMOTION QUESTIONS
+  for (const emotion of emotions) {
+    generated.push({
+      optionA: `Have a ${emotion} relationship`,
+      optionB: `Have a peaceful 😌 relationship`,
+    })
+  }
+
+  return generated
+}
+
+// ─────────────────────────────────────────────
+// TRUTH GENERATOR
+// ─────────────────────────────────────────────
+
+const truthTemplates = [
+  'What is your favorite memory involving',
+  'What reminds you most of',
+  'What is one thing you admire about',
+  'What would you change about',
+  'What song reminds you of',
+]
+
+const truthSubjects = [
+  'our friendship 🫂',
+  'our relationship 💕',
+  'our chaos 😂',
+  'our conversations 💬',
+  'our memories 📸',
+]
+
+function generateTruthQuestions(): string[] {
+  const generated: string[] = []
+
+  for (const template of truthTemplates) {
+    for (const subject of truthSubjects) {
+      generated.push(`${template} ${subject}?`)
+    }
+  }
+
+  return generated
+}
+
+// ─────────────────────────────────────────────
+// DARE GENERATOR
+// ─────────────────────────────────────────────
+
+const dareActions = [
+  'Send a selfie 📸',
+  'Record a voice note 🎤',
+  'Send your favorite meme 😂',
+  'Write a short poem ✍️',
+  'Do an impression 🎭',
+]
+
+const dareStyles = [
+  'in a dramatic way',
+  'while singing',
+  'using emojis only',
+  'without laughing',
+  'in your funniest voice',
+]
+
+function generateDares(): string[] {
+  const generated: string[] = []
+
+  for (const action of dareActions) {
+    for (const style of dareStyles) {
+      generated.push(`${action} ${style}`)
+    }
+  }
+
+  return generated
+}
+
+// ─────────────────────────────────────────────
+// THIS OR THAT GENERATOR
+// ─────────────────────────────────────────────
+
+const totA = [
+  'Coffee ☕',
+  'Tea 🍵',
+  'Beach 🏖️',
+  'Mountains ⛰️',
+  'Texts 📱',
+]
+
+const totB = [
+  'Hot chocolate 🍫',
+  'Juice 🧃',
+  'Snow ❄️',
+  'City 🏙️',
+  'Calls 📞',
+]
+
+function generateTOT(): TOTQuestion[] {
+  const generated: TOTQuestion[] = []
+
+  for (let i = 0; i < totA.length; i++) {
+    generated.push({
+      optionA: totA[i],
+      optionB: totB[i],
+    })
+  }
+
+  return generated
+}
+
+// ─────────────────────────────────────────────
+// COMPAT QUESTIONS
+// ─────────────────────────────────────────────
+
+function generateCompat(): CompatQuestion[] {
+  return [
+    {
+      question: 'Ideal weekend?',
+      options: [
+        'Stay home 🏠',
+        'Travel ✈️',
+        'Party 🎉',
+        'Sleep 😴',
+      ],
+    },
+    {
+      question: 'Favorite vibe?',
+      options: [
+        'Romantic 💕',
+        'Chaotic 😂',
+        'Peaceful 😌',
+        'Adventurous 🗺️',
+      ],
+    },
+  ]
+}
+
+// ─────────────────────────────────────────────
+// FINAL LARGE DATABASE
+// ─────────────────────────────────────────────
+
 export const wyrQuestions: WYRQuestion[] = [
-  { optionA: "Always hold hands in public 🤝", optionB: "Always have matching outfits 👫" },
-  { optionA: "Live in a treehouse together 🌳", optionB: "Live on a houseboat together ⛵" },
-  { optionA: "Only communicate through love letters 💌", optionB: "Only communicate through songs 🎵" },
-  { optionA: "Have a pet dragon 🐉", optionB: "Have a pet unicorn 🦄" },
-  { optionA: "Relive your first date forever 💕", optionB: "Fast forward to growing old together 👴👵" },
-  { optionA: "Cook every meal together 👨‍🍳", optionB: "Travel somewhere new every week ✈️" },
-  { optionA: "Read each other's minds 🧠", optionB: "Feel each other's emotions 💗" },
-  { optionA: "Dance in the rain together 🌧️", optionB: "Watch every sunset together 🌅" },
-  { optionA: "Have a love story movie about you 🎬", optionB: "Have a love song written about you 🎶" },
-  { optionA: "Never argue but never surprise each other 😐", optionB: "Sometimes argue but have amazing surprises 🎁" },
-  { optionA: "Be stuck on a desert island together 🏝️", optionB: "Be in different countries with unlimited calls 📱" },
-  { optionA: "Forget every movie so you can rewatch together 🍿", optionB: "Forget every meal so every bite is new 🍜" },
-  { optionA: "Have a personal chef 👩‍🍳", optionB: "Have a personal travel planner ✈️" },
-  { optionA: "Always know what gift they want 🎁", optionB: "Always know how to cheer them up 😊" },
-  { optionA: "Have a 2-hour date every day ⏰", optionB: "Have one epic date per week 🎆" },
-  { optionA: "Wake up next to each other every day ☀️", optionB: "Fall asleep on call every night 🌙" },
-  { optionA: "Share all your passwords 🔑", optionB: "Share all your food 🍕" },
-  { optionA: "Have your partner plan every date 📋", optionB: "Be surprised with random adventures 🎲" },
-  { optionA: "Live in a big city apartment 🏙️", optionB: "Live in a countryside cottage 🌻" },
-  { optionA: "Go to a music festival together 🎪", optionB: "Go on a camping trip together ⛺" },
-  { optionA: "Be able to teleport to each other 🌀", optionB: "Be able to pause time when together ⏸️" },
-  { optionA: "Know every language together 🌍", optionB: "Play every instrument together 🎸" },
-  { optionA: "Have breakfast in bed every day 🥞", optionB: "Have dinner under the stars every night ✨" },
-  { optionA: "Give up social media for a year 📵", optionB: "Give up eating out for a year 🏠" },
-  { optionA: "Always be warm and cozy 🔥", optionB: "Always be cool and refreshed ❄️" },
-  { optionA: "Watch only rom-coms forever 💑", optionB: "Watch only action movies forever 💥" },
-  { optionA: "Have matching tattoos 🖋️", optionB: "Have matching playlists 🎧" },
-  { optionA: "Win the lottery together 💰", optionB: "Become famous together 🌟" },
-  { optionA: "Time travel to your past together ⏳", optionB: "See your future together 🔮" },
-  { optionA: "Have a long love letter every week 📝", optionB: "Have a short sweet text every morning 💬" },
-  { optionA: "Cook a disastrous meal together 🔥🍳", optionB: "Get hopelessly lost on a road trip 🗺️" },
-  { optionA: "Adopt 5 dogs together 🐕", optionB: "Adopt 5 cats together 🐈" },
-  { optionA: "Have the same dream every night 💤", optionB: "Finish each other's sentences always 💬" },
-  { optionA: "Only eat pizza forever 🍕", optionB: "Only eat sushi forever 🍣" },
-  { optionA: "Have a movie night every Friday 🎥", optionB: "Have a game night every Saturday 🎮" },
-  { optionA: "Live where it's always summer ☀️", optionB: "Live where it's always autumn 🍂" },
-  { optionA: "Have your partner cook for you 👨‍🍳", optionB: "Have your partner give you massages 💆" },
-  { optionA: "Be able to fly together ✈️", optionB: "Be able to breathe underwater together 🌊" },
-  { optionA: "Spend 24 hours in a bookstore 📚", optionB: "Spend 24 hours in an amusement park 🎢" },
-  { optionA: "Have your love story as a book 📖", optionB: "Have your love story as a podcast 🎙️" },
+  ...baseWYR,
+  ...generateWYRQuestions(),
 ]
 
-// ─── TRUTH QUESTIONS (40 questions) ───
 export const truthQuestions: string[] = [
-  "What's the first thing you noticed about me? 👀",
-  "What's your favorite memory of us together? 💭",
-  "What song reminds you of me? 🎵",
-  "What's something you've never told me? 🤫",
-  "When did you first realize you liked me? 💕",
-  "What's the most embarrassing thing you've done to impress me? 😳",
-  "What do you love most about our relationship? 💗",
-  "If we could teleport anywhere right now, where would you take me? ✈️",
-  "What's a habit of mine that you secretly find adorable? 🥰",
-  "What would you do if we were in the same room right now? 🏠",
-  "What's a movie scene that reminds you of us? 🎬",
-  "What's your favorite inside joke we have? 😂",
-  "If you could change one thing about how we met, what would it be? 🔄",
-  "What's the sweetest thing I've ever done for you? 🍯",
-  "What were you thinking on our first date/first meeting? 🤔",
-  "What's one thing about me that always makes you smile? 😊",
-  "If you had to describe me in three words, what would they be? 💬",
-  "What's your favorite photo of us? 📸",
-  "What do you miss most about me right now? 💔",
-  "What's a dream you have for our future? 🌟",
-  "Have you ever cried because of me? (happy or sad tears) 😢",
-  "What's the best advice you'd give to our younger selves? 🧠",
-  "What food reminds you of me? 🍕",
-  "What do you think is our couple superpower? 💪",
-  "What's a fear you have about our relationship? 😰",
-  "What's the funniest thing that's happened to us? 😆",
-  "If you wrote a book about us, what would the title be? 📖",
-  "What's one thing you wish we did more often? ✨",
-  "What's your love language and why? 💝",
-  "What outfit of mine do you like the most? 👗",
-  "What's a small thing I do that means the world to you? 🌍",
-  "If we had a theme song, what would it be? 🎶",
-  "What's the hardest part of being in a long-distance relationship? 📍",
-  "What keeps you going when you miss me? 💪",
-  "What's a silly nickname you secretly want to call me? 🏷️",
-  "What's the best gift I ever gave you? 🎁",
-  "What color reminds you of me and why? 🎨",
-  "What do you think we'll be like in 10 years? 🔮",
-  "What's one thing you want to do together when we meet next? 🤗",
-  "On a scale of 1-10, how much do you miss me right now? (Be honest!) 📊",
+  ...generateTruthQuestions(),
 ]
 
-// ─── DARE CHALLENGES (40 questions) ───
 export const dareQuestions: string[] = [
-  "Send me the last photo in your gallery 📸",
-  "Do your best impression of me on video 🎭",
-  "Send a voice note saying 'I love you' in 3 accents 🗣️",
-  "Change your profile pic to your silliest selfie for 1 hour 🤳",
-  "Write a 4-line poem about me right now ✍️",
-  "Send me your all-time favorite meme 😂",
-  "Record yourself dancing to our song 💃",
-  "Text 'I miss you' in 5 different languages 🌍",
-  "Send the ugliest selfie you can take 🤪",
-  "Describe me using only food items 🍕",
-  "Send me a drawing of us (MS Paint counts!) 🎨",
-  "Post a story about me (or screenshot and show me) 📱",
-  "Call me right now and sing a line from a love song 🎤",
-  "Tell me your phone password (just kidding... unless? 👀)",
-  "Send a video of you saying 10 things you love about me 💕",
-  "Do 10 pushups and send proof 💪",
-  "Let me choose your ringtone for a week 🔊",
-  "Write my name on your hand and send a photo ✋",
-  "Send me a screenshot of your most recent search history 🔍",
-  "Record yourself telling a joke (has to be funny!) 😄",
-  "Send me a photo of what you're wearing right now 👕",
-  "Type a message to me using only your nose 👃",
-  "Send your best attempt at a wink selfie 😉",
-  "Send a voice note of you rapping about our relationship 🎤",
-  "Let me pick your outfit for tomorrow 👗",
-  "Share the last song you listened to 🎵",
-  "Do a dramatic reading of our last text conversation 🎭",
-  "Send me a video tour of your room right now 🏠",
-  "Make a funny face and set it as your wallpaper for a day 😜",
-  "Write 'I love [your name]' on a piece of paper and carry it all day 📄",
-  "Send me a childhood photo of yourself 👶",
-  "Record yourself doing your best movie villain impression 🦹",
-  "Text your best friend 'I secretly love pineapple on pizza' 🍍",
-  "Take a selfie right now — no fixing your hair first! 📷",
-  "Send me a voice note of your best animal impression 🐷",
-  "Create a 10-second TikTok/reel about us (or pretend to) 📹",
-  "Write me a haiku about missing me ✏️",
-  "Let me choose your next social media caption 📝",
-  "Say something cheesy to the next person you see and record it 🧀",
-  "Send me a photo of the last meal you cooked 🍳",
+  ...generateDares(),
 ]
 
-// ─── THIS OR THAT (40 questions) ───
 export const totQuestions: TOTQuestion[] = [
-  { optionA: "Morning person 🌅", optionB: "Night owl 🌙" },
-  { optionA: "Texts first 📱", optionB: "Calls first 📞" },
-  { optionA: "Sweet tooth 🍩", optionB: "Spicy lover 🌶️" },
-  { optionA: "Beach vacation 🏖️", optionB: "Mountain getaway ⛰️" },
-  { optionA: "Big wedding 💒", optionB: "Tiny elopement 💍" },
-  { optionA: "Cuddling on the couch 🛋️", optionB: "Dancing in the kitchen 💃" },
-  { optionA: "Say 'I love you' more 💬", optionB: "Show 'I love you' more 🎁" },
-  { optionA: "Rom-com 🎬", optionB: "Action movie 💥" },
-  { optionA: "Breakfast in bed 🥞", optionB: "Dinner under stars 🌌" },
-  { optionA: "Road trip 🚗", optionB: "Plane trip ✈️" },
-  { optionA: "Matching tattoos 🖋️", optionB: "Matching playlists 🎧" },
-  { optionA: "Adopt a dog 🐕", optionB: "Adopt a cat 🐈" },
-  { optionA: "Pizza night 🍕", optionB: "Sushi night 🍣" },
-  { optionA: "Netflix binge 📺", optionB: "Board game marathon 🎲" },
-  { optionA: "Cook together 👨‍🍳", optionB: "Order takeout 🥡" },
-  { optionA: "Love letters 💌", optionB: "Voice notes 🎤" },
-  { optionA: "Sunrise walk 🌄", optionB: "Midnight drive 🌃" },
-  { optionA: "Indoor date 🏠", optionB: "Outdoor adventure 🏕️" },
-  { optionA: "Coffee ☕", optionB: "Tea 🍵" },
-  { optionA: "Summer vibes ☀️", optionB: "Winter cozy ❄️" },
-  { optionA: "Big city life 🏙️", optionB: "Small town charm 🌾" },
-  { optionA: "Bookstore date 📚", optionB: "Museum date 🖼️" },
-  { optionA: "Karaoke night 🎤", optionB: "Movie night 🍿" },
-  { optionA: "Fancy restaurant 🍷", optionB: "Street food adventure 🌮" },
-  { optionA: "Give gifts 🎁", optionB: "Receive gifts 🤗" },
-  { optionA: "Instagram couple 📸", optionB: "Private and lowkey 🤫" },
-  { optionA: "Funny partner 😂", optionB: "Romantic partner 🌹" },
-  { optionA: "Long deep talks 🗣️", optionB: "Comfortable silence 🤐" },
-  { optionA: "Plan everything 📋", optionB: "Be spontaneous 🎲" },
-  { optionA: "Chocolate 🍫", optionB: "Ice cream 🍦" },
-  { optionA: "First to say sorry 🙏", optionB: "First to make them laugh 😄" },
-  { optionA: "Partner picks the movie 🎬", optionB: "Partner picks the restaurant 🍽️" },
-  { optionA: "Amusement park 🎢", optionB: "Water park 🌊" },
-  { optionA: "Star Wars ⭐", optionB: "Harry Potter 🧙" },
-  { optionA: "Early bird special 🐦", optionB: "Late night snack 🌙" },
-  { optionA: "Video call date 💻", optionB: "Phone call date 📞" },
-  { optionA: "Send memes 😆", optionB: "Send songs 🎵" },
-  { optionA: "Cook breakfast 🍳", optionB: "Cook dinner 🍝" },
-  { optionA: "Rainy day in 🌧️", optionB: "Sunny day out ☀️" },
-  { optionA: "Take photos together 📷", optionB: "Make videos together 🎥" },
+  ...generateTOT(),
 ]
 
-// ─── COMPATIBILITY QUIZ (20 questions, randomly pick 6-8 per session) ───
 export const compatQuestions: CompatQuestion[] = [
-  { question: "It's Saturday night. Ideal date?", options: ["Netflix & snacks 🍿", "Fancy dinner 🍷", "Game night 🎮", "Stargazing 🌌"] },
-  { question: "Your love language?", options: ["Words of affirmation 💬", "Physical touch 🤗", "Gifts 🎁", "Quality time ⏰"] },
-  { question: "Pick a superpower for your relationship", options: ["Teleportation 🌀", "Mind reading 🧠", "Time travel ⏳", "Freeze time ❄️"] },
-  { question: "Dream home?", options: ["City penthouse 🏙️", "Beach house 🏖️", "Mountain cabin 🏔️", "Countryside cottage 🌻"] },
-  { question: "What's most important?", options: ["Trust 🤝", "Humor 😂", "Adventure 🗺️", "Communication 💬"] },
-  { question: "Your couple anthem vibe?", options: ["Romantic ballad 🎵", "Upbeat pop 🎶", "Indie chill 🎸", "Classic love song 🎹"] },
-  { question: "Ideal vacation style?", options: ["All-inclusive resort 🏨", "Backpacking adventure 🎒", "Cultural city trip 🏛️", "Stay home staycation 🏡"] },
-  { question: "How do you handle disagreements?", options: ["Talk it out right away 🗣️", "Take space then discuss 🚶", "Write it down first 📝", "Hug it out 🤗"] },
-  { question: "Best way to spend a lazy Sunday?", options: ["Sleep in together 😴", "Brunch & coffee ☕", "Watch movies all day 📺", "Cook something new 🍳"] },
-  { question: "What kind of pet couple are you?", options: ["Dog parents 🐕", "Cat parents 🐱", "Exotic pets 🦎", "Plant parents 🌱"] },
-  { question: "Ideal road trip snack?", options: ["Chips & candy 🍬", "Fruit & healthy stuff 🍎", "Fast food stops 🍔", "Homemade sandwiches 🥪"] },
-  { question: "How do you show love?", options: ["Cooking for them 🍳", "Surprise gifts 🎁", "Saying sweet things 💝", "Planning special dates 📅"] },
-  { question: "Pick a movie genre for date night", options: ["Horror (hold me tight!) 👻", "Comedy (laugh together) 😂", "Romance (aww) 💕", "Thriller (edge of seat) 🔥"] },
-  { question: "What makes a perfect morning?", options: ["Coffee in bed ☕", "Workout together 💪", "Sleeping in 😴", "Sunrise watching 🌅"] },
-  { question: "Your texting style?", options: ["Long paragraphs 📝", "Memes & GIFs 😂", "Voice notes 🎤", "Quick one-liners ⚡"] },
-  { question: "Pick a date night activity", options: ["Escape room 🔐", "Cooking class 👨‍🍳", "Stargazing 🌌", "Karaoke 🎤"] },
-  { question: "If you won the lottery together?", options: ["Travel the world 🌍", "Buy a dream house 🏡", "Start a business 💼", "Save & invest 📈"] },
-  { question: "Anniversary celebration style?", options: ["Surprise party 🎉", "Quiet dinner for two 🕯️", "Trip somewhere new ✈️", "Recreate first date 💕"] },
-  { question: "How do you deal with missing each other?", options: ["Video call ASAP 📱", "Send a care package 📦", "Write letters 💌", "Plan the next visit 📅"] },
-  { question: "What's your couple aesthetic?", options: ["Cozy & hygge 🕯️", "Adventure & wild 🏔️", "Elegant & classy 🥂", "Goofy & chaotic 🤪"] },
+  ...generateCompat(),
 ]
 
-// ─── LOVE NOTES (50 notes) ───
-export const loveNotes: string[] = [
-  "I fall in love with you a little more every single day 💕",
-  "You're my favorite notification 📱❤️",
-  "Distance means nothing when someone means everything 🌍💗",
-  "I wish I could teleport to wherever you are right now ✨",
-  "You make me smile even from miles away 😊",
-  "My heart is wherever you are 💌",
-  "Can't wait for the day I don't have to say goodbye 🤞",
-  "You're worth every mile between us 🛤️",
-  "Thinking of you is my favorite hobby 💭",
-  "Our love story is my favorite one 📖",
-  "You're the best part of my day, even from far away ☀️",
-  "I love you more than yesterday, less than tomorrow 💫",
-  "Missing you is my cardio 😅❤️",
-  "You + Me = Better than WiFi 📶",
-  "Sending virtual hugs that I wish were real 🤗",
-  "You're the reason I check my phone 1000 times a day 📱",
-  "I don't need the whole world, just you 🌎",
-  "Every love song makes sense because of you 🎵",
-  "You're my 11:11 wish every time ✨",
-  "Being apart only reminds me how much I love being together 💑",
-  "If I had a flower for every time I thought of you, I'd have an endless garden 🌸",
-  "You're the plot twist I didn't see coming but always needed 📚",
-  "Good morning! Just wanted to remind you that you're amazing 🌅",
-  "I love the way your eyes light up when you laugh 😍",
-  "You turned my whole world into a better place just by existing 🌍",
-  "The distance is temporary, but us? We're forever 💍",
-  "I'd rather have a long-distance with you than no distance with anyone else 💕",
-  "Can we skip to the part where I wake up next to you every day? ⏩",
-  "You're my favorite 'what if' that became real ✨",
-  "Even WiFi can't connect two people the way we are 🔗",
-  "They say home is where the heart is, so you're my home 🏡",
-  "I still get butterflies when I see your name on my screen 🦋",
-  "If love were a game, I'd pick you every time — no cheat codes needed 🎮",
-  "You're the only person I'd share my food with 🍕💕",
-  "One day, the distance between us will just be a memory 💭",
-  "I love you in the morning, in the middle of the day, in the hours we're together and the hours we're apart 🕐",
-  "Thank you for making me believe in love again 💗",
-  "You're not just my partner, you're my best friend and my favorite person 🫂",
-  "I keep falling for you. Every. Single. Day. 🍂",
-  "Just thinking about you gives me the biggest, goofiest smile 😁",
-  "You are my today and all of my tomorrows 🌅",
-  "No amount of distance can change how I feel about you 📏❤️",
-  "You're the cheese to my macaroni 🧀",
-  "I want to be the reason you look at your phone and smile 😊",
-  "If I had to choose between breathing and loving you, I'd use my last breath to say I love you 💨❤️",
-  "You had me at hello... and every message since 💬",
-  "You're the first and last thing on my mind every day 💭",
-  "I'm so glad the internet brought us together 🌐💕",
-  "Every moment with you feels like magic ✨",
-  "You're proof that the best things in life are worth waiting for ⏳💗",
-]
+// ─────────────────────────────────────────────
+// OPTIONAL: ENSURE 200+ QUESTIONS
+// ─────────────────────────────────────────────
 
-// ─── EMOJI MOVIE PUZZLES (50 movies) ───
-export const movieQuestions: MovieQuestion[] = [
-  { emojis: "🚢❄️💑", answer: "Titanic", hints: ["1997 film", "Jack & Rose", "Iceberg ahead!"] },
-  { emojis: "🦁👑🌍", answer: "The Lion King", hints: ["Hakuna Matata", "Circle of life", "Disney classic"] },
-  { emojis: "🧙‍♂️💍🌋", answer: "Lord of the Rings", hints: ["One ring to rule them all", "Middle Earth", "Hobbits"] },
-  { emojis: "🕷️🦸‍♂️🏙️", answer: "Spider-Man", hints: ["With great power...", "Web slinger", "Friendly neighborhood"] },
-  { emojis: "🧊👸⛄🎵", answer: "Frozen", hints: ["Let it go", "Sister bond", "Disney princess"] },
-  { emojis: "🐀👨‍🍳🇫🇷", answer: "Ratatouille", hints: ["Anyone can cook", "Paris kitchen", "Tiny chef"] },
-  { emojis: "💊🕶️🔴🔵", answer: "The Matrix", hints: ["Red or blue pill", "Neo", "Bullet time"] },
-  { emojis: "🦖🏝️🧬", answer: "Jurassic Park", hints: ["Life finds a way", "Dinosaurs return", "Theme park"] },
-  { emojis: "🤖❤️🌱🚀", answer: "WALL-E", hints: ["Lonely robot", "EVE", "Save the earth"] },
-  { emojis: "🌹👹📚🕯️", answer: "Beauty and the Beast", hints: ["Tale as old as time", "Enchanted rose", "Be our guest"] },
-  { emojis: "🧑‍🚀🪐⭐", answer: "Interstellar", hints: ["Wormhole travel", "Love transcends time", "Space dad"] },
-  { emojis: "🐠🔍🌊", answer: "Finding Nemo", hints: ["Just keep swimming", "Clownfish", "Pixar"] },
-  { emojis: "👻🍕🔫🇮🇹", answer: "The Godfather", hints: ["Offer you can't refuse", "Corleone family", "Mafia"] },
-  { emojis: "🏎️💨🏁", answer: "Cars", hints: ["Ka-chow!", "Lightning McQueen", "Pixar"] },
-  { emojis: "🧸🍯🌲", answer: "Winnie the Pooh", hints: ["Oh bother", "Hundred Acre Wood", "Disney"] },
-  { emojis: "🦇🌃🃏", answer: "The Dark Knight", hints: ["Why so serious?", "Gotham City", "Superhero"] },
-  { emojis: "✨👗🎃12️⃣", answer: "Cinderella", hints: ["Glass slipper", "Midnight", "Fairy godmother"] },
-  { emojis: "🐒👑🏰", answer: "Aladdin", hints: ["A whole new world", "Magic carpet", "Genie"] },
-  { emojis: "🧛‍♂️💕🌧️", answer: "Twilight", hints: ["Vampires & wolves", "Bella & Edward", "Forks"] },
-  { emojis: "🏴‍☠️💀⚓", answer: "Pirates of the Caribbean", hints: ["Captain Jack", "Black Pearl", "Rum"] },
-  { emojis: "🎈🏠👴👦", answer: "Up", hints: ["Paradise Falls", "Thousands of balloons", "Pixar tearjerker"] },
-  { emojis: "💇‍♀️👸🏼🦎", answer: "Tangled", hints: ["Long hair", "Flynn Rider", "Disney princess"] },
-  { emojis: "🐼🥋🍜", answer: "Kung Fu Panda", hints: ["Skadoosh", "Dragon Warrior", "DreamWorks"] },
-  { emojis: "🚗💀🏜️🔥", answer: "Mad Max Fury Road", hints: ["Witness me", "Post-apocalyptic", "War rig"] },
-  { emojis: "🦈🏊‍♂️😱", answer: "Jaws", hints: ["We need a bigger boat", "Shark attack", "Spielberg"] },
-  { emojis: "💀🎸🇲🇽🌺", answer: "Coco", hints: ["Remember me", "Day of the Dead", "Pixar"] },
-  { emojis: "🧙‍♂️⚡👓", answer: "Harry Potter", hints: ["The boy who lived", "Hogwarts", "Wizarding world"] },
-  { emojis: "🌊🏄‍♀️🪝🌺", answer: "Moana", hints: ["You're welcome", "Ocean princess", "Maui"] },
-  { emojis: "👨‍👩‍👧‍👦🧠😢😡", answer: "Inside Out", hints: ["Emotions as characters", "Joy & Sadness", "Pixar"] },
-  { emojis: "🕺🎶🇮🇳💃", answer: "Dilwale Dulhania Le Jayenge", hints: ["Bollywood classic", "Raj & Simran", "Train scene"] },
-  { emojis: "👰‍♀️💒6️⃣", answer: "My Big Fat Greek Wedding", hints: ["Windex fixes everything", "Greek family", "Comedy"] },
-  { emojis: "🏠👻👨‍👩‍👧", answer: "The Conjuring", hints: ["Based on true events", "Warren family", "Horror"] },
-  { emojis: "🐕‍🦺📬❤️", answer: "Hachi", hints: ["Loyal dog", "Train station", "Based on true story"] },
-  { emojis: "🎭🎵🌃", answer: "The Phantom of the Opera", hints: ["Mask", "Broadway adaptation", "Musical"] },
-  { emojis: "🏫👫📓", answer: "The Notebook", hints: ["It wasn't over", "Ryan Gosling", "Love story"] },
-  { emojis: "🌧️☔🎵🕺", answer: "Singin' in the Rain", hints: ["Classic musical", "Hollywood golden age", "Dance in rain"] },
-  { emojis: "👩‍🚀🌍🔥", answer: "Gravity", hints: ["Lost in space", "Sandra Bullock", "Survival"] },
-  { emojis: "🤵🔫🍸", answer: "James Bond", hints: ["Shaken not stirred", "007", "British spy"] },
-  { emojis: "🐉🗡️🏰", answer: "How to Train Your Dragon", hints: ["Toothless", "Vikings", "DreamWorks"] },
-  { emojis: "🎪🎤🌟", answer: "The Greatest Showman", hints: ["P.T. Barnum", "Hugh Jackman", "Musical"] },
-  { emojis: "🧟‍♂️💕🧠", answer: "Warm Bodies", hints: ["Zombie romance", "R & Julie", "Comedy horror"] },
-  { emojis: "🌍🦠😷", answer: "Contagion", hints: ["Pandemic thriller", "Steven Soderbergh", "Virus outbreak"] },
-  { emojis: "🐝🎬🍯", answer: "Bee Movie", hints: ["Ya like jazz?", "Jerry Seinfeld", "Animated"] },
-  { emojis: "🧒🎈🤡", answer: "It", hints: ["Stephen King", "Pennywise", "Horror"] },
-  { emojis: "🏋️‍♂️🥊🏆", answer: "Rocky", hints: ["Sylvester Stallone", "Underdog boxer", "Philadelphia"] },
-  { emojis: "🌌⚔️👨‍👦", answer: "Star Wars", hints: ["I am your father", "The Force", "Galaxy far away"] },
-  { emojis: "🧜‍♀️🌊🦀", answer: "The Little Mermaid", hints: ["Under the sea", "Ariel", "Disney princess"] },
-  { emojis: "💎🚢🎰", answer: "Uncut Gems", hints: ["Adam Sandler drama", "High stakes", "2019 thriller"] },
-  { emojis: "👧🌪️🏡🐕", answer: "The Wizard of Oz", hints: ["No place like home", "Ruby slippers", "Over the rainbow"] },
-  { emojis: "🕐🚗⚡", answer: "Back to the Future", hints: ["88 miles per hour", "DeLorean", "Time machine"] },
-]
+while (wyrQuestions.length < 200) {
+  wyrQuestions.push(...generateWYRQuestions())
+}
 
-// ─── UTILITY: Shuffle & pick N from array ───
+while (truthQuestions.length < 200) {
+  truthQuestions.push(...generateTruthQuestions())
+}
+
+while (dareQuestions.length < 200) {
+  dareQuestions.push(...generateDares())
+}
+
+while (totQuestions.length < 200) {
+  totQuestions.push(...generateTOT())
+}
+
+// ─────────────────────────────────────────────
+// UTILITY
+// ─────────────────────────────────────────────
+
 export function shuffleAndPick<T>(arr: T[], n: number): T[] {
   const shuffled = [...arr].sort(() => Math.random() - 0.5)
   return shuffled.slice(0, n)
