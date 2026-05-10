@@ -4,7 +4,6 @@ A cute game hub for long-distance relationships and loved ones. 100% FREE — no
 
 ## ✨ What's Inside
 
-- **🧠 Trivia** — Powered by [OpenTDB](https://opentdb.com) (free, no key needed)
 - **🎬 Guess the Movie** — 50 emoji movie puzzles (built-in)
 - **🤔 Would You Rather** — 40 fun questions
 - **🔥 Truth or Dare** — 40 truths + 40 dares

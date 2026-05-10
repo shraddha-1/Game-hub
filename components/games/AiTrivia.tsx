@@ -59,7 +59,6 @@ export default function AiTrivia({ session, onBack }: { session: Session; onBack
     <PageWrap onBack={onBack}>
       <div style={{ paddingTop: 16 }}>
         <ScoreBar current={idx + 1} total={questions.length} score={score} />
-        <Badge>AI Trivia 🧠</Badge>
         <Card style={{ marginTop: 20 }}>
           <div style={{ textAlign: 'center', marginBottom: 24 }}>
             <div style={{ fontSize: 40, marginBottom: 12 }}>{q.emoji}</div>

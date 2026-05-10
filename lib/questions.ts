@@ -314,3 +314,53 @@ export function shuffleAndPick<T>(arr: T[], n: number): T[] {
   const shuffled = [...arr].sort(() => Math.random() - 0.5)
   return shuffled.slice(0, n)
 }
+
+// ─────────────────────────────────────────────
+// LOVE NOTES
+// ─────────────────────────────────────────────
+
+export const loveNotes: string[] = [
+  "I fall in love with you a little more every single day 💕",
+  "You're my favorite notification 📱❤️",
+  "Distance means nothing when someone means everything 🌍💗",
+  "You make me smile even from miles away 😊",
+  "My heart is wherever you are 💌",
+  "Thinking of you is my favorite hobby 💭",
+  "You're worth every mile 🛤️",
+  "Can't wait for the day I don't have to say goodbye 🤞",
+  "Our story is my favorite one 📖",
+  "You're the best part of my day ☀️",
+  "I love you more than yesterday, less than tomorrow 💫",
+  "Sending virtual hugs that I wish were real 🤗",
+  "You + Me = Better than WiFi 📶",
+  "Missing you is my cardio 😅❤️",
+  "You're my safe place 🏡💕",
+]
+
+// ─────────────────────────────────────────────
+// MOVIE QUESTIONS
+// ─────────────────────────────────────────────
+
+export interface MovieQuestion {
+  emojis: string
+  answer: string
+  hints: string[]
+}
+
+export const movieQuestions: MovieQuestion[] = [
+  { emojis: '🚢❄️💑',    answer: 'Titanic',           hints: ['1997 film', 'Jack & Rose', 'Iceberg!'] },
+  { emojis: '🦁👑🌍',    answer: 'The Lion King',      hints: ['Hakuna Matata', 'Circle of life', 'Disney'] },
+  { emojis: '🧊👸⛄🎵',  answer: 'Frozen',             hints: ['Let it go', 'Sister bond', 'Princess'] },
+  { emojis: '🐀👨‍🍳🇫🇷', answer: 'Ratatouille',        hints: ['Anyone can cook', 'Paris', 'Tiny chef'] },
+  { emojis: '🤖❤️🌱🚀',  answer: 'WALL-E',             hints: ['Lonely robot', 'EVE', 'Save the earth'] },
+  { emojis: '💊🕶️🔴🔵',  answer: 'The Matrix',         hints: ['Red or blue pill', 'Neo', 'Bullet time'] },
+  { emojis: '🦖🏝️🧬',    answer: 'Jurassic Park',      hints: ['Life finds a way', 'Dinosaurs', 'Theme park'] },
+  { emojis: '🧙‍♂️💍🌋',  answer: 'Lord of the Rings',  hints: ['One ring', 'Middle Earth', 'Hobbits'] },
+  { emojis: '🕷️🦸‍♂️🏙️', answer: 'Spider-Man',         hints: ['With great power', 'Web slinger', 'NYC'] },
+  { emojis: '🌹👹📚🕯️',  answer: 'Beauty and the Beast', hints: ['Tale as old as time', 'Enchanted rose', 'Be our guest'] },
+  { emojis: '🧑‍🚀🪐⭐',   answer: 'Interstellar',       hints: ['Wormhole', 'Love transcends time', 'Space dad'] },
+  { emojis: '🐠🐡🌊',    answer: 'Finding Nemo',        hints: ['Just keep swimming', 'Clownfish', 'Ocean adventure'] },
+  { emojis: '🧸🤠🐍',    answer: 'Toy Story',           hints: ['To infinity', 'Woody & Buzz', 'Pixar classic'] },
+  { emojis: '🦇🃏😂',    answer: 'The Dark Knight',     hints: ['Why so serious', 'Joker', 'Gotham'] },
+  { emojis: '👻🍕🗗🍕',   answer: 'Ghostbusters',        hints: ['Who ya gonna call', 'Slimer', 'NYC ghosts'] },
+]

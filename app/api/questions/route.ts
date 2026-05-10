@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
 
   try {
     switch (gameType) {
-      // ─── OpenTDB for trivia ───
+      // ─── OpenTDB for trivia (free, no key needed) ───
       case 'trivia': {
         const n = amount ?? 10
         const res = await fetch(
@@ -36,22 +36,16 @@ export async function POST(req: NextRequest) {
       // ─── Built-in question banks ───
       case 'movie':
         return NextResponse.json({ questions: shuffleAndPick(movieQuestions, amount ?? 12) })
-
       case 'wyr':
         return NextResponse.json({ questions: shuffleAndPick(wyrQuestions, amount ?? 10) })
-
       case 'truth':
         return NextResponse.json({ questions: shuffleAndPick(truthQuestions, amount ?? 10) })
-
       case 'dare':
         return NextResponse.json({ questions: shuffleAndPick(dareQuestions, amount ?? 10) })
-
       case 'tot':
         return NextResponse.json({ questions: shuffleAndPick(totQuestions, amount ?? 12) })
-
       case 'compat':
-        return NextResponse.json({ questions: shuffleAndPick(compatQuestions, amount ?? 6) })
-
+        return NextResponse.json({ questions: shuffleAndPick(compatQuestions, amount ?? 10) })
       case 'love':
         return NextResponse.json({ questions: shuffleAndPick(loveNotes, amount ?? 15) })
 

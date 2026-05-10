@@ -66,3 +66,6 @@ export async function getAllSessions(): Promise<Session[]> {
 export async function deleteSessionById(id: string): Promise<void> {
   await deleteDoc(doc(db, 'sessions', id))
 }
+export async function updatePartnerName(id: string, partnerName: string): Promise<void> {
+  await setDoc(doc(db, 'sessions', id), { partnerName }, { merge: true })
+}

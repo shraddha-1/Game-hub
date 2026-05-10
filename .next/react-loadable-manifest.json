@@ -1,1 +1,54 @@
-{}
+{
+  "app/page.tsx -> @/lib/questions": {
+    "id": "app/page.tsx -> @/lib/questions",
+    "files": [
+      "static/chunks/_app-pages-browser_lib_questions_ts.js"
+    ]
+  },
+  "app/play/[sessionId]/page.tsx -> @/components/games/AiTrivia": {
+    "id": "app/play/[sessionId]/page.tsx -> @/components/games/AiTrivia",
+    "files": [
+      "static/chunks/_app-pages-browser_components_games_AiTrivia_tsx.js"
+    ]
+  },
+  "app/play/[sessionId]/page.tsx -> @/components/games/CompatQuiz": {
+    "id": "app/play/[sessionId]/page.tsx -> @/components/games/CompatQuiz",
+    "files": [
+      "static/chunks/_app-pages-browser_components_games_CompatQuiz_tsx.js"
+    ]
+  },
+  "app/play/[sessionId]/page.tsx -> @/components/games/GuessMovie": {
+    "id": "app/play/[sessionId]/page.tsx -> @/components/games/GuessMovie",
+    "files": [
+      "static/chunks/_app-pages-browser_components_games_GuessMovie_tsx.js"
+    ]
+  },
+  "app/play/[sessionId]/page.tsx -> @/components/games/LoveNotes": {
+    "id": "app/play/[sessionId]/page.tsx -> @/components/games/LoveNotes",
+    "files": [
+      "static/chunks/_app-pages-browser_components_games_LoveNotes_tsx.js"
+    ]
+  },
+  "app/play/[sessionId]/page.tsx -> @/components/games/ThisOrThat": {
+    "id": "app/play/[sessionId]/page.tsx -> @/components/games/ThisOrThat",
+    "files": [
+      "static/chunks/_app-pages-browser_components_games_ThisOrThat_tsx.js"
+    ]
+  },
+  "app/play/[sessionId]/page.tsx -> @/components/games/TruthOrDare": {
+    "id": "app/play/[sessionId]/page.tsx -> @/components/games/TruthOrDare",
+    "files": [
+      "static/chunks/_app-pages-browser_components_games_TruthOrDare_tsx.js"
+    ]
+  },
+  "app/play/[sessionId]/page.tsx -> @/components/games/WouldYouRather": {
+    "id": "app/play/[sessionId]/page.tsx -> @/components/games/WouldYouRather",
+    "files": [
+      "static/chunks/_app-pages-browser_components_games_WouldYouRather_tsx.js"
+    ]
+  },
+  "components/games/WouldYouRather.tsx -> firebase/firestore": {
+    "id": "components/games/WouldYouRather.tsx -> firebase/firestore",
+    "files": []
+  }
+}
