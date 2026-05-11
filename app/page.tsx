@@ -15,12 +15,10 @@ const GAMES = [
 ]
 
 const RELATIONSHIPS: { value: RelationshipType; emoji: string; label: string }[] = [
-  { value: 'partner',    emoji: '💕', label: 'Partner / Lover'   },
-  { value: 'bestfriend', emoji: '🫂', label: 'Best Friend'       },
-  { value: 'crush',      emoji: '🦋', label: 'Crush'             },
-  { value: 'sibling',    emoji: '👯', label: 'Sibling'           },
-  { value: 'parent',     emoji: '🏠', label: 'Parent / Child'    },
-  { value: 'colleague',  emoji: '💼', label: 'Colleague'         },
+  { value: 'partner',    emoji: '💕', label: 'Partner / Lover' },
+  { value: 'bestfriend', emoji: '🫂', label: 'Best Friend'     },
+  { value: 'parent',     emoji: '🏠', label: 'Parent / Child'  },
+  { value: 'sibling',    emoji: '👯', label: 'Sibling'         },
 ]
 
 type Step = 'landing' | 'who' | 'games' | 'generating' | 'done'
@@ -50,17 +48,18 @@ export default function HomePage() {
   }
 
   const generateQuestions = async (sid: string, rel: RelationshipType, cName: string, pName: string, games: string[]) => {
-    const { shuffleAndPick, wyrQuestions, truthQuestions, dareQuestions, totQuestions, compatQuestions, loveNotes, movieQuestions } = await import('@/lib/questions')
+    const { getQuestionsForRelationship, shuffleAndPick, loveNotes, movieQuestions } = await import('@/lib/questions')
 
-    // Always start with local questions — instant, no network needed
+    // Get relationship-specific questions instantly
+    const relQ = getQuestionsForRelationship(rel as any)
     const questions: Record<string, any[]> = {
-      wyr:    shuffleAndPick(wyrQuestions,    10),
-      truth:  shuffleAndPick(truthQuestions,  10),
-      dare:   shuffleAndPick(dareQuestions,   10),
-      tot:    shuffleAndPick(totQuestions,    12),
-      compat: shuffleAndPick(compatQuestions, 10),
-      love:   shuffleAndPick(loveNotes,       15),
-      movie:  shuffleAndPick(movieQuestions,  12),
+      wyr:    shuffleAndPick(relQ.wyrQuestions,    10),
+      truth:  shuffleAndPick(relQ.truthQuestions,  10),
+      dare:   shuffleAndPick(relQ.dareQuestions,   10),
+      tot:    shuffleAndPick(relQ.totQuestions,    12),
+      compat: shuffleAndPick(relQ.compatQuestions, 10),
+      love:   shuffleAndPick(loveNotes,            15),
+      movie:  shuffleAndPick(movieQuestions,        12),
     }
 
     // Then fetch from API (trivia uses OpenTDB, others get shuffled from same local DB)
